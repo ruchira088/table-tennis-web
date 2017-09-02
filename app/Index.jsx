@@ -1,12 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
+import Router from "./Router"
 
 const root = document.getElementById("react-app")
 
-const HelloWorld = () => (
-    <div>
-        Hello World
-    </div>
-)
-
-ReactDOM.render(<HelloWorld/>, root)
+ReactDOM.render(<Router/>, root)

@@ -28,7 +28,8 @@ module.exports = {
     resolve: {
         extensions: ["*", ".js", ".json", ".jsx"],
         alias: {
-            styles: path.join(__dirname, "app", "styles")
+            styles: path.join(__dirname, "app", "styles"),
+            components: path.join(__dirname, "app", "components")
         }
     }
 }
