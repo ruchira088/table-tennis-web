@@ -4,7 +4,7 @@
   "description": "Web UI for the table tennis results application",
   "main": "index.js",
   "scripts": {
-    "development": "webpack-dev-server --content-base public/ --inline --hot --history-api-fallback --port 8001 --host 0.0.0.0",
+    "development": "webpack-dev-server --content-base public/ --inline --hot --history-api-fallback --port 8000 --host 0.0.0.0",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ruchira Jayasekara <ruchira088@gmail.com>",
