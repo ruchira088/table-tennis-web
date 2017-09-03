@@ -29,7 +29,8 @@ module.exports = {
         extensions: ["*", ".js", ".json", ".jsx"],
         alias: {
             styles: path.join(__dirname, "app", "styles"),
-            components: path.join(__dirname, "app", "components")
+            components: path.join(__dirname, "app", "components"),
+            services: path.join(__dirname, "app", "services")
         }
     }
 }

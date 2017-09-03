@@ -1,5 +1,8 @@
 import React from "react"
 import InputSection from "components/InputSection"
+import { exists as teamExists } from "services/teamService"
+
+const isTeamNameAvailable = teamName => teamExists(teamName).then(exist => !exist)
 
 export default class CreateTeam extends React.Component
 {
@@ -7,20 +10,28 @@ export default class CreateTeam extends React.Component
         super(props)
         
         this.state = {
-            availableTeamName: false
+            availableTeamName: false,
+            fetching: false
         }
     }
     
-    componentWillReceiveProps(newProps) {
-        
+    componentWillReceiveProps({value: newValue}) {
+        const { value } = this.props
+
+        if (value !== newValue && newValue.trim().length > 0) {
+            this.setState({ fetching: true })
+
+            isTeamNameAvailable(newValue)
+                .then(available => {
+                    this.setState({availableTeamName: available, fetching: false})
+                })
+        } else {
+            this.setState({availableTeamName: false})
+        }
     }
     
-    isAvailableTeamName(teamName) {
-        
-    }
-
     render() {
-        const {teamName, onChange} = this.props
+        const { teamName, onChange } = this.props
         
         return (
             <div className="create-team">
