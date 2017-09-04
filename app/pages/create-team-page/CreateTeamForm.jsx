@@ -1,6 +1,7 @@
 import React from "react"
-import InputSection from "components/InputSection"
 import { exists as teamExists } from "services/teamService"
+import InputSection from "components/InputSection"
+import LoadingIcon from "components/LoadingIcon"
 
 const isTeamNameAvailable = teamName => teamExists(teamName).then(exist => !exist)
 
@@ -10,24 +11,37 @@ export default class CreateTeam extends React.Component
         super(props)
         
         this.state = {
-            availableTeamName: false,
             fetching: false
         }
     }
     
     componentWillReceiveProps({value: newValue}) {
-        const { value } = this.props
+        const { value, onAvailabilityUpdate } = this.props
 
-        if (value !== newValue && newValue.trim().length > 0) {
-            this.setState({ fetching: true })
+        if (value !== newValue) {
+            if (newValue.trim().length > 0) {
+              this.setState({ fetching: true })
 
-            isTeamNameAvailable(newValue)
+              isTeamNameAvailable(newValue)
                 .then(available => {
-                    this.setState({availableTeamName: available, fetching: false})
+                  this.setState({fetching: false})
+                  onAvailabilityUpdate(available)
                 })
-        } else {
-            this.setState({availableTeamName: false})
+            } else {
+              onAvailabilityUpdate(false)
+            }
         }
+    }
+
+    getLoadingIcon = () => {
+        const { fetching } = this.state
+
+        if(fetching) {
+            return <LoadingIcon/>
+        } else {
+            return null
+        }
+
     }
     
     render() {
@@ -36,6 +50,7 @@ export default class CreateTeam extends React.Component
         return (
             <div className="create-team">
                 <InputSection label="Team Name" value={teamName} onChange={onChange}/>
+                { this.getLoadingIcon() }
             </div>
         )
 

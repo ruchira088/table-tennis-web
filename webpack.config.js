@@ -23,7 +23,7 @@ module.exports = {
                 use: ["style-loader", "css-loader", "sass-loader"]
             },
             {
-                test: /\.(png|jpeg|jpg|gif)$/,
+                test: /\.(png|jpeg|jpg|gif|svg)$/,
                 use: "file-loader?name=images/[name].[ext]"
             }
         ]
@@ -34,7 +34,8 @@ module.exports = {
             styles: getPath("styles"),
             components: getPath("components"),
             services: getPath("services"),
-            config: getPath("config")
+            config: getPath("config"),
+            assets: getPath("assets")
         }
     },
     plugins: [
