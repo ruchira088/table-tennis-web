@@ -1,7 +1,10 @@
 const path = require("path")
+const webpack = require("webpack")
+
+const getPath = (...dirPath) => path.join(__dirname, "app", ...dirPath)
 
 module.exports = {
-    entry: path.join(__dirname, "app", "Index.jsx"),
+    entry: getPath("Index.jsx"),
     output: {
         path: path.join(__dirname, "public", "build"),
         filename: "bundle.js",
@@ -28,9 +31,15 @@ module.exports = {
     resolve: {
         extensions: ["*", ".js", ".json", ".jsx"],
         alias: {
-            styles: path.join(__dirname, "app", "styles"),
-            components: path.join(__dirname, "app", "components"),
-            services: path.join(__dirname, "app", "services")
+            styles: getPath("styles"),
+            components: getPath("components"),
+            services: getPath("services"),
+            config: getPath("config")
         }
-    }
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            NODE_ENV: JSON.stringify(process.env.NODE_ENV || "DEVELOPMENT")
+        })
+    ]
 }

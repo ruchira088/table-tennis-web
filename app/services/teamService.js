@@ -1,7 +1,8 @@
 import axios from "axios"
+import config from "config/index"
 
 const axiosClient = axios.create({
-    baseURL: "http://localhost:9001",
+    baseURL: config.USER_SERVICE_URL,
 })
 
 export const searchTeamName = teamName =>
