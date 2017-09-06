@@ -35,7 +35,8 @@ module.exports = {
             components: getPath("components"),
             services: getPath("services"),
             config: getPath("config"),
-            assets: getPath("assets")
+            assets: getPath("assets"),
+            utils: getPath("utils")
         }
     },
     plugins: [

@@ -5,7 +5,7 @@ import LoadingIcon from "components/LoadingIcon"
 
 const isTeamNameAvailable = teamName => teamExists(teamName).then(exist => !exist)
 
-export default class CreateTeam extends React.Component
+export default class CreateTeamForm extends React.Component
 {
     constructor(props) {
         super(props)
